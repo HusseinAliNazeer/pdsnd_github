@@ -197,31 +197,31 @@ def display_data(df):
     Returns:
         None.
     """
-    BIN_RESPONSE_LIST = ['yes', 'no']
-    rdata = ''
+    response_list = ['yes', 'no']
+    raw_data = ''
     #counter variable is initialized as a tag to ensure only details from
     #a particular point is displayed
     counter = 0
-    while rdata not in BIN_RESPONSE_LIST:
+    while raw_data not in response_list:
         print("\nDo you wish to view the raw data? Yes or No")
-        rdata = input().lower()
+        raw_data = input().lower()
         #the raw data from the df is displayed if user opts for it
-        if rdata == "yes":
+        if raw_data == "yes":
             print(df.head())
-        elif rdata not in BIN_RESPONSE_LIST:
+        elif raw_data not in response_list:
             print("\nPlease check your input.")
             print("Input does not seem to match any of the accepted responses.")
             print("\nRestarting...\n")
 
     #Extra while loop here to ask user if they want to continue viewing data
-    while rdata == 'yes':
+    while raw_data == 'yes':
         print("Do you wish to view more raw data?")
         counter += 5
-        rdata = input().lower()
+        raw_data = input().lower()
         #If user opts for it, this displays next 5 rows of data
-        if rdata == "yes":
+        if raw_data == "yes":
              print(df[counter:counter+5])
-        elif rdata != "yes":
+        elif raw_data != "yes":
              break
 
     print('-'*80)
