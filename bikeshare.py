@@ -2,6 +2,7 @@ import time
 import pandas as pd
 import numpy as np
 
+#dictionary for  data files to be analysed
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -199,13 +200,12 @@ def display_data(df):
     """
     BIN_RESPONSE_LIST = ['yes', 'no']
     rdata = ''
-    #counter variable is initialized as a tag to ensure only details from
-    #a particular point is displayed
+    #counter variable is initialized as a tag to ensure only details from a particular point is displayed
     counter = 0
     while rdata not in BIN_RESPONSE_LIST:
         print("\nDo you wish to view the raw data? Yes or No")
         rdata = input().lower()
-        #the raw data from the df is displayed if user opts for it
+        #the raw data from the dataframe is displayed if user opts for it
         if rdata == "yes":
             print(df.head())
         elif rdata not in BIN_RESPONSE_LIST:
@@ -224,7 +224,7 @@ def display_data(df):
         elif rdata != "yes":
              break
 
-    print('-'*80)
+    print('-'*40)
 
 def main():
     while True:
