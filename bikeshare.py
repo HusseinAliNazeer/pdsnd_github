@@ -227,6 +227,7 @@ def display_data(df):
     print('-'*80)
 
 def main():
+    #while loop used to run the code until user get enough data and stop it
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
