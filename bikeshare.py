@@ -97,17 +97,17 @@ def time_stats(df):
     start_time = time.time()
 
     # TO DO: display the most common month
-    popular_month = df['month'].mode()[0]
-    print(f"Most Popular Month : {popular_month}\n")
+    frequent_month = df['month'].mode()[0]
+    print(f"Most Popular Month : {frequent_month}\n")
 
     # TO DO: display the most common day of week
-    popular_day = df['day_of_week'].mode()[0]
-    print(f"Most Popular Day : {popular_day}\n")
+    frequent_day = df['day_of_week'].mode()[0]
+    print(f"Most Popular Day : {frequent_day}\n")
 
     # TO DO: display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
-    popular_hour = df['hour'].mode()[0]
-    print(f"Most Popular hour : {popular_hour}")
+    frequent_hour = df['hour'].mode()[0]
+    print(f"Most Popular hour : {frequent_hour}")
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -198,35 +198,37 @@ def display_data(df):
     Returns:
         None.
     """
-    BIN_RESPONSE_LIST = ['yes', 'no']
-    rdata = ''
-    #counter variable is initialized as a tag to ensure only details from a particular point is displayed
+    response_list = ['yes', 'no']
+    raw_data = ''
+    #counter variable is initialized as a tag to ensure only details from
+    #a particular point is displayed
     counter = 0
-    while rdata not in BIN_RESPONSE_LIST:
+    while raw_data not in response_list:
         print("\nDo you wish to view the raw data? Yes or No")
-        rdata = input().lower()
-        #the raw data from the dataframe is displayed if user opts for it
-        if rdata == "yes":
+        raw_data = input().lower()
+        #the raw data from the df is displayed if user opts for it
+        if raw_data == "yes":
             print(df.head())
-        elif rdata not in BIN_RESPONSE_LIST:
+        elif raw_data not in response_list:
             print("\nPlease check your input.")
             print("Input does not seem to match any of the accepted responses.")
             print("\nRestarting...\n")
 
     #Extra while loop here to ask user if they want to continue viewing data
-    while rdata == 'yes':
+    while raw_data == 'yes':
         print("Do you wish to view more raw data?")
         counter += 5
-        rdata = input().lower()
+        raw_data = input().lower()
         #If user opts for it, this displays next 5 rows of data
-        if rdata == "yes":
+        if raw_data == "yes":
              print(df[counter:counter+5])
-        elif rdata != "yes":
+        elif raw_data != "yes":
              break
 
     print('-'*40)
 
 def main():
+    #while loop used to run the code until user get enough data and stop it
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
